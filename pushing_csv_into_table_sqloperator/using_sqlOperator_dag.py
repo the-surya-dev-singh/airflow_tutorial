@@ -68,4 +68,21 @@ with DAG(
         task_id='insert',
         python_callable=insert_data
     )
-check_file_task>>pre_process_csv>>aggregate>>create_table>>insert
+    email=EmailOperator( #configure airflow.cfg as given below
+        task_id="send_email",
+        to="singh61012660@gmail.com",
+        subject="done with airflow",
+        html_content=""" <h1>Congratulations! Your store reports are ready.</h1> """
+    )
+"""
+smtp_host = smtp.office365.com
+smtp_starttls = True
+smtp_ssl = False
+# Example: smtp_user = airflow
+smtp_user = surya.singh@extensodata.com
+# Example: smtp_password = airflow
+smtp_password = Kaloluffy12#
+smtp_port = 587
+smtp_mail_from = surya.singh@extensodata.com
+"""
+check_file_task>>pre_process_csv>>aggregate>>create_table>>insert>>email

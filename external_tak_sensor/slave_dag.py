@@ -10,7 +10,7 @@ default_args={
 with DAG(
     dag_id='slave_dag_v05',
     default_args=default_args,
-    schedule_interval=timedelta(hours=4),
+    schedule_interval='@daily',
     catchup=False
     ) as dag:
     

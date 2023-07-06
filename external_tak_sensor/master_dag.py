@@ -12,7 +12,7 @@ default_args={
 with DAG(
     dag_id='master_dag_v05',
     default_args=default_args,
-    #schedule_interval=timedelta(hours=4)
+    schedule_interval='@daily'
     ) as dag:
     
     sensor_task= ExternalTaskSensor(
